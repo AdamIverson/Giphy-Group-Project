@@ -22,12 +22,12 @@
       [ ] Create 
 
   [ ] Favorites View
-    [ ] Display GIFs by Favorites
-    [ ] GIFs come from db without categories
-    [ ] Once user has sent to Favorites, can assign category from db list
+    [ ] Display GIFs by Favorites (GET route from reducer GET favorites)
+    <!-- [ ] GIFs come from db without categories -->
+    <!-- [ ] Once user has sent to Favorites, can assign category from db list -->
 
   [ ] Reducers
-    [ ] Favorite GIFs
+    [ ] Favorite GIFs - favoriteReducer
     [ ] Search Results
 
   [ ] Sagas
