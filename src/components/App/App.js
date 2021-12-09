@@ -23,12 +23,8 @@ function App(props) {
             <Link to="/favorites">Favorites</Link>
           </li>
         </ul>
-      <Routes>
         <Route exact path="/" element={SearchView}/>
-      </Routes>
-      <Routes>
         <Route exact path="/favorites" element={FavoritesView}/>
-      </Routes>
       
       </Router>
     </div>
