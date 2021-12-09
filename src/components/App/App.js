@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import SearchView from '../SearchView/SearchView';
 import { HashRouter as Router, Route, Switch, Link } from "react-router-dom"
 
 import FavoritesView from '../FavoritesView/FavoritesView.jsx';
