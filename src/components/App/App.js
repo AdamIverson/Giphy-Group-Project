@@ -2,6 +2,8 @@ import React from 'react';
 import SearchView from '../SearchView/SearchView';
 import { HashRouter as Router, Route, Switch, Link } from "react-router-dom"
 
+import FavoritesView from '../FavoritesView/FavoritesView.jsx';
+
 function App(props) {
   return (
     <div>
@@ -9,6 +11,9 @@ function App(props) {
         <h1>Hope U Like GIFs, Buddy</h1>
       </header>
       <br></br>
+    
+        <h1>Giphy Search!</h1>
+    
       <Router>
         <ul>
           <li>

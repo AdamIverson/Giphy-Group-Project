@@ -8,22 +8,53 @@ import createSagaMiddleware from "redux-saga";
 import { put, takeEvery } from "redux-saga/effects";
 import axios from "axios";
 
-// catcher function
-function* gifCatcher() {
-    
+// create favoriteReducer - array that holds favorite gifs
+const favoritesReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_FAVORITES':
+            return action.payload;
+        default:
+            return state;
+    };
+};
+
+// create Saga function to fetchFavorites
+function* fetchFavorites(action) {
+    try {
+        console.log('in fetchFavorites', action);
+        // make axios GET request to '/api/favorite' for favorites
+        const response = yield axios({
+            method: 'GET',
+            url: '/api/favorite'
+        });
+        // Update favoritesReducer
+        yield put({
+            type: 'SET_FAVORITES',
+            payload: response.data
+        })
+    } catch (err) {
+        console.error(err);
+    }
+} // end fetchFavorites
+
+// create Saga watcher function
+function* watcherSaga() {
+    yield takeEvery('FETCH_FAVORITES', fetchFavorites);
 }
-  
-// Create sagaMiddleware
+
+// instantiate Saga middleware
 const sagaMiddleware = createSagaMiddleware();
-  
+
+// create app's redux store
 const store = createStore(
-combineReducers({ 
-    
-}),
-applyMiddleware(sagaMiddleware, logger)
+    combineReducers({
+        favoritesReducer,
+    }),
+    // ⚡ TODO Apply Saga middleware:
+    applyMiddleware(logger, sagaMiddleware)
 );
-  
-// Pass rootSaga into our sagaMiddleware
-sagaMiddleware.run(gifCatcher);
+
+// run Saga middleware
+sagaMiddleware.run(watcherSaga);
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
