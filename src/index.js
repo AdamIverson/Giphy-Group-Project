@@ -25,30 +25,33 @@ function* fetchFavorites(action) {
         });
         // Update favoritesReducer
         yield put({
-            type: 'ADD_FAVORITES',
+            type: 'SET_FAVORITES',
             payload: response.data
         })
-    } catch(err) {
+    } catch (err) {
         console.error(err);
     }
 } // end fetchFavorites
 
-
 // create Saga watcher function
-
-
+function* watcherSaga() {
+    yield takeEvery('FETCH_FAVORITES', fetchFavorites);
+}
 
 // instantiate Saga middleware
-
-
+const sagaMiddleware = createSagaMiddleware();
 
 // create app's redux store
-
-
+const store = createStore(
+    combineReducers({
+        favoritesReducer,
+    }),
+    // ⚡ TODO Apply Saga middleware:
+    applyMiddleware(logger, sagaMiddleware)
+);
 
 // run Saga middleware
-
-
+sagaMiddleware.run(watcherSaga);
 
 // wrap app in Provider
 ReactDOM.render(
