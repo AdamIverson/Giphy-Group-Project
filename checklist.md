@@ -1,11 +1,11 @@
 [ ] Group Giphy Saga Project
   [x] npm install
-  [ ] Setup Database
-    [ ] table(s)
-      [ ] Favorites Table
-        [ ] "id", "name", "category_id" (foreign key)
-    [ ] JOIN
-      [ ] Favorites Table & Category Table
+  [x] Setup Database
+    [x] table(s)
+      [x] Favorites Table
+        [x] "id", "name", "category_id" (foreign key)
+    [x] JOIN
+      [x] Favorites Table & Category Table
 
 [ ] TWO VIEWS
   [ ] Routes -> push.history()
@@ -39,3 +39,23 @@
 
   [x] - .env 
     
+index.js - 
+    [ ] - Sagas
+    [ ] - Reducers
+    [ ] - Middleware, Logger
+    [ ] - Watcher
+
+SearchView -
+    [ ] - POST route
+    [ ] - .map -> gifs with favorite buttons
+    [ ] - add category drop-down menu
+
+Favorite - 
+    [ ] - PUT route
+
+  .env -
+    [ ] api key
+
+    Tasks, Round 1:
+      - GET Route
+      
