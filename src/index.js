@@ -8,4 +8,58 @@ import createSagaMiddleware from "redux-saga";
 import { put, takeEvery } from "redux-saga/effects";
 import axios from "axios";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+
+
+
+
+const searchReducer = (state = [], action) => {
+    if(action.type === 'SET_RESULTS'){
+        console.log('In searchReducer', action.payload);
+        return action.payload;
+    }
+    return state;
+}
+
+
+
+
+
+
+function* getSearch(action){
+    //console.log('in getSearchhhh!');  
+    try{
+        const response = yield axios({
+            method: 'GET',
+            url: `/api/search${action.payload}`
+        })
+        yield put({
+            type: 'SET_RESULTS',
+            payload: response.data
+        });
+    }catch(error){
+        console.log('Errorin GET getSearch', error);
+        
+    }
+}
+
+
+
+
+
+
+const reduxStore = createStore(
+    combineReducers({
+        searchReducer,
+    }),
+    applyMiddleware(logger)
+);
+
+
+
+ReactDOM.render
+    (<Provider store={reduxStore}>
+        <App />
+    </Provider>,
+document.getElementById('root'));
+
+registerServiceWorker();
