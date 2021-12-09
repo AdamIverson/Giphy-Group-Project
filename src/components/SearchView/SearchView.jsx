@@ -1,12 +1,11 @@
 import React from 'react';
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { useState } from 'react';
 
 function SearchView() {
     //Initial state is an OBJECT, with keys id and name
-    let [newGif, setGif] = useState({id: 1, name: ''});
+    let [newGif, setGif] = useState('');
 
     // Declare dispatch and history
     const dispatch = useDispatch();
@@ -22,9 +21,12 @@ function SearchView() {
     // Submits new gif object
     const addNewGif = event => {
         event.preventDefault();
-        dispatch({ type: 'POST_GIF', payload: newGif });
-        //updates the next Gif to have a new id
-        setGif({id:newGif.id + 1, name: ''});
+        dispatch({ 
+            type: 'GET_RESULTS',
+            payload: newGif 
+        });
+        //updates the next Gif
+        setGif('');
     }
 
     return (

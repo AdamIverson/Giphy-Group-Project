@@ -8,13 +8,6 @@ import createSagaMiddleware from "redux-saga";
 import { put, takeEvery } from "redux-saga/effects";
 import axios from "axios";
 
-// Saga GET route
-
-// Saga POST route
-
-// Saga DELETE route
-
-// Redux reducers
 // This is temporary, just to get the page to load
 const searchReducer = (state = [], action) => {
     switch (action.type) {
@@ -27,7 +20,7 @@ const searchReducer = (state = [], action) => {
 
 // catcher function
 function* gifCatcher() {
-    
+    yield takeEvery('NEW_GIF', addGif);
 }
   
 // Create sagaMiddleware
