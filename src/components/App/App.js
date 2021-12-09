@@ -1,7 +1,7 @@
 import React from "react";
 import { HashRouter as Router, Route, Routes, Link } from "react-router-dom"
 
-import FavoritesDisplay from '../FavoritesView/FavoritesView.jsx';
+import FavoritesView from '../FavoritesView/FavoritesView.jsx';
 
 function App(props) {
   return (
@@ -13,7 +13,7 @@ function App(props) {
       <div>
         <h1>Giphy Search!</h1>
         <h3>Favorites!</h3>
-        <FavoritesDisplay />
+        <FavoritesView />
       </div>
 
     </div>

@@ -11,13 +11,18 @@ import axios from "axios";
 
 // create favoriteReducer - array that holds favorite gifs
 const favoritesReducer = (state = [], action) => {
-    return state;
+    switch (action.type) {
+        case 'SET_FAVORITES':
+            return action.payload;
+        default:
+            return state;
+    };
 };
 
 // create Saga function to fetchFavorites
 function* fetchFavorites(action) {
     try {
-        console.log(action);
+        console.log('in fetchFavorites', action);
         // make axios GET request to '/api/favorite' for favorites
         const response = yield axios({
             method: 'GET',

@@ -5,7 +5,7 @@ import { useHistory } from 'react-router';
 
 
 // create function to display favorites on DOM
-function FavoritesDisplay() {
+function FavoritesView() {
     const dispatch = useDispatch();
 
     // Make our reducer available in our component
@@ -32,6 +32,6 @@ function FavoritesDisplay() {
             ))}
         </ul>
     )
-} // end FavoritesDisplay
+} // end FavoritesView
 
-export default FavoritesDisplay;
+export default FavoritesView;
