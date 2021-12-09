@@ -8,19 +8,9 @@ import createSagaMiddleware from "redux-saga";
 import { put, takeEvery } from "redux-saga/effects";
 import axios from "axios";
 
-// This is temporary, just to get the page to load
-const searchReducer = (state = [], action) => {
-    switch (action.type) {
-      case 'POST_GIF':
-        return action.payload
-      default:
-        return state;
-    }
-  };
-
 // catcher function
 function* gifCatcher() {
-    yield takeEvery('NEW_GIF', addGif);
+    
 }
   
 // Create sagaMiddleware
@@ -28,7 +18,7 @@ const sagaMiddleware = createSagaMiddleware();
   
 const store = createStore(
 combineReducers({ 
-    searchReducer,
+    
 }),
 applyMiddleware(sagaMiddleware, logger)
 );
