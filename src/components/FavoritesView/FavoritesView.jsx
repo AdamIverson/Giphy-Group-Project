@@ -38,3 +38,4 @@ function FavoritesView() {
 } // end FavoritesView
 
 export default FavoritesView;
+
