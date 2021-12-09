@@ -24,13 +24,16 @@ function FavoritesView() {
     };
 
     return (
-        <ul>
-            {favoritesReducer.map(favoriteItem => (
-                <li key={favoriteItem.id}>
-                    {favoriteItem.name}
-                </li>
-            ))}
-        </ul>
+        <div>
+            <p>{favoritesReducer}</p>
+            {/* <ul>
+                {favoritesReducer.map(favoriteItem => (
+                    <li key={favoriteItem.id}>
+                        {favoriteItem.name}
+                    </li>
+                ))}
+            </ul> */}
+        </div>
     )
 } // end FavoritesView
 
