@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import SearchView from '../SearchView/SearchView';
 import { HashRouter as Router, Route, Switch, Link } from "react-router-dom"
 
 function App(props) {
@@ -18,7 +19,7 @@ function App(props) {
           </li>
         </ul>
       <Routes>
-        <Route exact path="/" element={FavoriteView}/>
+        <Route exact path="/" element={SearchView}/>
       </Routes>
       <Routes>
         <Route exact path="/favorites" element={FavoritesView}/>

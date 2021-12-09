@@ -8,9 +8,22 @@ import createSagaMiddleware from "redux-saga";
 import { put, takeEvery } from "redux-saga/effects";
 import axios from "axios";
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById("root")
+// catcher function
+function* gifCatcher() {
+    
+}
+  
+// Create sagaMiddleware
+const sagaMiddleware = createSagaMiddleware();
+  
+const store = createStore(
+combineReducers({ 
+    
+}),
+applyMiddleware(sagaMiddleware, logger)
 );
+  
+// Pass rootSaga into our sagaMiddleware
+sagaMiddleware.run(gifCatcher);
+
+ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
