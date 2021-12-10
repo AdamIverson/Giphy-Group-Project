@@ -12,6 +12,7 @@ import axios from "axios";
 const favoritesReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_FAVORITES':
+            console.log('in favoritesReducer', action.payload);
             return action.payload;
         default:
             return state;
@@ -21,7 +22,7 @@ const favoritesReducer = (state = [], action) => {
 // create Saga function to fetchFavorites
 function* fetchFavorites(action) {
     try {
-        console.log('in fetchFavorites', action);
+        // console.log('in fetchFavorites', action);
         // make axios GET request to '/api/favorite' for favorites
         const response = yield axios({
             method: 'GET',
@@ -70,6 +71,7 @@ const searchReducer = (state = [], action) => {
             default:
                 return state;
     }
+    
 }
 
 
@@ -80,25 +82,41 @@ function* getSearch(action){
     try{
         const response = yield axios({
             method: 'GET',
-            url: `/api/search${action.payload}`
+            url: `/api/search?q=${action.payload}`
         })
         yield put({
             type: 'SET_RESULTS',
             payload: response.data
         });
     }catch(error){
-        console.log('Errorin GET getSearch', error);
-        
+        console.log('Error in GET getSearch', error);
     }
-}
+};
 
 //=========================================================================
+
+function* addFavorite(action) {
+    try {
+      const response = yield axios({
+        method: "POST",
+        url: "/api/plant",
+        data: { plant: action.payload },
+      });
+      yield put({
+        type: "FETCH_FAVORITES",
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
 
 // create Saga watcher function
 function* watcherSaga() {
     yield takeEvery('FETCH_FAVORITES', fetchFavorites);
     yield takeEvery('FETCH_SEARCHES', getSearch);
 
+    yield takeEvery('ADD_FAVORITE', addFavorite);
 }
 
 // instantiate Saga middleware
