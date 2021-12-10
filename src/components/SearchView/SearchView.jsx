@@ -2,12 +2,11 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { useState } from 'react';
-
+import { Button, TextField } from '@mui/material';
 
 function SearchView() {
     let [newGif, setGif] = useState('');
     const searchReducer = useSelector((store) => store.searchReducer)
-    console.log('in search reducer: ', searchReducer);
 
     // Declare dispatch and history
     const dispatch = useDispatch();
@@ -49,15 +48,22 @@ function SearchView() {
 
     return (
         <form onSubmit={addNewGif}>
-            <input placeholder="Search for a gif, or don't" 
-            value={newGif.name}
-            onChange={handleNameChange} />
-            <button type="submit">Submit</button>
-            {searchReducer.map((search) => {
-                return (
-                    <img src={search.images.original.url} />
-                );
-            })}
+            <div className="inputs">
+                <TextField label="Search for a gif" variant="standard" value={newGif.name} onChange={handleNameChange}/>
+                {/* <input placeholder="Search for a gif, or don't" 
+                value={newGif.name}
+                onChange={handleNameChange} /> */}
+                <div id="submit-btn">
+                    <Button variant="contained" type="submit">Submit</Button>
+                </div>
+            </div>
+            <div>
+                {searchReducer.map((search) => {
+                    return (
+                        <img key={search.id} className="gif" src={search.images.original.url} />
+                    );
+                })}
+            </div>
         </form>
     );
 }

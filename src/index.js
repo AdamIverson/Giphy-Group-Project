@@ -7,6 +7,7 @@ import logger from "redux-logger";
 import createSagaMiddleware from "redux-saga";
 import { put, takeEvery } from "redux-saga/effects";
 import axios from "axios";
+import './index.css'
 
 // create favoriteReducer - array that holds favorite gifs
 const favoritesReducer = (state = [], action) => {
