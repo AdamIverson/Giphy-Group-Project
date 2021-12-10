@@ -39,20 +39,44 @@ function* fetchFavorites(action) {
 } // end fetchFavorites
 
 
-
-//=========================================================================
-const searchReducer = (state = [], action) => {
-    console.log('In searchReducer', action.payload);
-    switch (action.type) {
-        case 'SET_RESULTS':
+const categoryReducer = (state = [], action) => {
+    switch(action.type){
+        case 'SET_CATEGORY':
             return action.payload;
-        default:
-            return state;
+            default:
+                return state;
     }
 }
 
-//--------------------------------------
+function* getCategory(){
+    try{
+        const response = yield axios({
+            method: 'GET',
+            url: '/api/category'
+        })
+        yield put({
+            type: 'SET_CATEGORY',
+            payload: response.data
+        })
+    }catch(error){
+        console.log(error);
+        
+    }
+}
+//=========================================================================
+const searchReducer = (state = [], action) => {
+    switch(action.type){
+        case 'FETCH_SEARCH':
+            return action.payload;
+            default:
+                return state;
+    }
+    
+}
 
+
+
+//--------------------------------------
 function* getSearch(action){
     //console.log('in getSearchhhh!');  
     try{
@@ -102,7 +126,8 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
     combineReducers({
         favoritesReducer,
-        searchReducer
+        searchReducer,
+        categoryReducer
     }),
     // ⚡ TODO Apply Saga middleware:
     applyMiddleware(logger, sagaMiddleware)
