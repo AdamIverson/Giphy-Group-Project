@@ -5,6 +5,7 @@ const router = express.Router();
 
 // return all favorite images
 router.get('/', (req, res) => {
+  // need to setup get route to get info from database
   res.sendStatus(200);
 });
 
