@@ -67,14 +67,32 @@ function* getSearch(action){
     }catch(error){
         console.log('Error in GET getSearch', error);
     }
-}
+};
 
 //=========================================================================
+
+function* addFavorite(action) {
+    try {
+      const response = yield axios({
+        method: "POST",
+        url: "/api/plant",
+        data: { plant: action.payload },
+      });
+      yield put({
+        type: "FETCH_FAVORITES",
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
 
 // create Saga watcher function
 function* watcherSaga() {
     yield takeEvery('FETCH_FAVORITES', fetchFavorites);
     yield takeEvery('FETCH_SEARCHES', getSearch);
+
+    yield takeEvery('ADD_FAVORITE', addFavorite);
 }
 
 // instantiate Saga middleware
