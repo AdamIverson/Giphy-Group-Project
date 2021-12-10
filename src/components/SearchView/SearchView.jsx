@@ -4,9 +4,7 @@ import { useHistory } from 'react-router';
 import { useState } from 'react';
 
 
-
 function SearchView() {
-    //Initial state is an OBJECT, with keys id and name
     let [newGif, setGif] = useState('');
 
     // Declare dispatch and history
@@ -17,33 +15,33 @@ function SearchView() {
     const handleNameChange = (event) => {
         console.log('event happened');
         //Similar to in redux -- we dont want to get rid of the id field when we update name
-        setGif({...newGif, name: event.target.value})
+        setGif(event.target.value);
     }
 
     // Submits new gif object
     const addNewGif = event => {
         event.preventDefault();
         dispatch({ 
-            type: 'GET_RESULTS',
+            type: 'FETCH_SEARCHES',
             payload: newGif 
         });
         //updates the next Gif
         setGif('');
     }
     //---------------------------------------------------------------------
-    useEffect(() => {
-        getSearches();
-    }, []);
+    // useEffect(() => {
+    //     getSearches();
+    // }, []);
     
-    const searchReducer = useSelector(store => store.searchReducer)
+    // const searchReducer = useSelector(store => store.searchReducer)
 
 
-    const getSearches = () => {
-        console.log('in searching');
-        dispatch({
-            type: 'FETCH_SEARCHES'
-        })
-    }
+    // const getSearches = () => {
+    //     console.log('in searching');
+    //     dispatch({
+    //         type: 'FETCH_SEARCHES'
+    //     })
+    // }
 
     const addFavorite = () => {
         console.log('in addFavorite');

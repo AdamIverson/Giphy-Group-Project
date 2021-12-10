@@ -11,9 +11,9 @@ function App(props) {
         <h1>Hope U Like GIFs, Buddy</h1>
       </header>
       <br></br>
-    
+
         <h1>Giphy Search!</h1>
-    
+
       <Router>
         <ul>
           <li>
@@ -23,6 +23,7 @@ function App(props) {
             <Link to="/favorites">Favorites</Link>
           </li>
         </ul>
+    
         <Route exact path="/" >
           <SearchView />
         </Route>
@@ -30,7 +31,6 @@ function App(props) {
         <Route exact path="/favorites" >
           <FavoritesView />
         </Route>
-      
       </Router>
     </div>
   );
