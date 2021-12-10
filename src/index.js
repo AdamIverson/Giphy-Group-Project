@@ -57,8 +57,7 @@ function* getSearch(action){
     try{
         const response = yield axios({
             method: 'GET',
-            // /gifSearch?q=${action.payload}
-            url: `/gifSearch?q=${action.payload}`
+            url: `/api/search?q=${action.payload}`
         })
         yield put({
             type: 'SET_RESULTS',
