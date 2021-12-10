@@ -30,6 +30,14 @@ function SearchView() {
         //updates the next Gif
         setGif('');
     }
+
+    const selectCategory = (event) => {
+        console.log(event.target.value);
+        this.setState({
+            selectValue: event.target.value
+        })
+
+    }
     //---------------------------------------------------------------------
     useEffect(() => {
         getSearches();
