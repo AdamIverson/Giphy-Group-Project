@@ -88,6 +88,7 @@ function* getSearch(action){
             type: 'SET_RESULTS',
             payload: response.data
         });
+        console.log(response.data);
     }catch(error){
         console.log('Error in GET getSearch', error);
     }
@@ -115,7 +116,6 @@ function* addFavorite(action) {
 function* watcherSaga() {
     yield takeEvery('FETCH_FAVORITES', fetchFavorites);
     yield takeEvery('FETCH_SEARCHES', getSearch);
-
     yield takeEvery('ADD_FAVORITE', addFavorite);
 }
 

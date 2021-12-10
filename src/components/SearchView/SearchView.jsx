@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { useState } from 'react';
@@ -36,20 +36,6 @@ function SearchView() {
         })
 
     }
-    //---------------------------------------------------------------------
-    // useEffect(() => {
-    //     getSearches();
-    // }, []);
-    
-    // const searchReducer = useSelector(store => store.searchReducer)
-
-
-    // const getSearches = () => {
-    //     console.log('in searching');
-    //     dispatch({
-    //         type: 'FETCH_SEARCHES'
-    //     })
-    // }
 
     const addFavorite = () => {
         console.log('in addFavorite');
@@ -65,6 +51,7 @@ function SearchView() {
             value={newGif.name}
             onChange={handleNameChange} />
             <button type="submit">Submit</button>
+            {}
         </form>
     );
 }
