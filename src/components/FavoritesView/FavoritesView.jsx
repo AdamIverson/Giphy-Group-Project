@@ -38,7 +38,7 @@ function FavoritesView() {
         } else {
             return 'No category';
         }
-    }
+    } // end displayCategoryName
 
     return (
         <div>
