@@ -7,6 +7,7 @@ import logger from "redux-logger";
 import createSagaMiddleware from "redux-saga";
 import { put, takeEvery } from "redux-saga/effects";
 import axios from "axios";
+import './index.css'
 
 // create favoriteReducer - array that holds favorite gifs
 const favoritesReducer = (state = [], action) => {
@@ -85,9 +86,10 @@ function* getSearch(action){
             url: `/api/search?q=${action.payload}`
         })
         yield put({
-            type: 'SET_RESULTS',
+            type: 'FETCH_SEARCH',
             payload: response.data
         });
+        console.log(response.data);
     }catch(error){
         console.log('Error in GET getSearch', error);
     }
@@ -115,7 +117,6 @@ function* addFavorite(action) {
 function* watcherSaga() {
     yield takeEvery('FETCH_FAVORITES', fetchFavorites);
     yield takeEvery('FETCH_SEARCHES', getSearch);
-
     yield takeEvery('ADD_FAVORITE', addFavorite);
 }
 
