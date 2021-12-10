@@ -85,7 +85,7 @@ function* getSearch(action){
             url: `/api/search?q=${action.payload}`
         })
         yield put({
-            type: 'SET_RESULTS',
+            type: 'FETCH_SEARCH',
             payload: response.data
         });
         console.log(response.data);

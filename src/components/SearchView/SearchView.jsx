@@ -6,6 +6,8 @@ import { useState } from 'react';
 
 function SearchView() {
     let [newGif, setGif] = useState('');
+    const searchReducer = useSelector((store) => store.searchReducer)
+    console.log('in search reducer: ', searchReducer);
 
     // Declare dispatch and history
     const dispatch = useDispatch();
@@ -51,7 +53,11 @@ function SearchView() {
             value={newGif.name}
             onChange={handleNameChange} />
             <button type="submit">Submit</button>
-            {}
+            {searchReducer.map((search) => {
+                return (
+                    <img src={search.images.original.url} />
+                );
+            })}
         </form>
     );
 }
