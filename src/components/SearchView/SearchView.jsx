@@ -17,7 +17,7 @@ function SearchView() {
     const handleNameChange = (event) => {
         console.log('event happened');
         //Similar to in redux -- we dont want to get rid of the id field when we update name
-        setGif(...newGif, event.target.value);
+        setGif(event.target.value);
     }
 
     // Submits new gif object
