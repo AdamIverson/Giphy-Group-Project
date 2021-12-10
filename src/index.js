@@ -58,7 +58,7 @@ function* getSearch(action){
         const response = yield axios({
             method: 'GET',
             // /gifSearch?q=${action.payload}
-            url: `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${action.payload}`
+            url: `/gifSearch?q=${action.payload}`
         })
         yield put({
             type: 'SET_RESULTS',
