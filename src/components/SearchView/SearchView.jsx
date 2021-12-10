@@ -1,7 +1,9 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { useState } from 'react';
+
+
 
 function SearchView() {
     //Initial state is an OBJECT, with keys id and name
@@ -28,6 +30,23 @@ function SearchView() {
         //updates the next Gif
         setGif('');
     }
+    //---------------------------------------------------------------------
+    useEffect(() => {
+        getSearches();
+    }, []);
+    
+    const searchReducer = useSelector(store => store.searchReducer)
+
+
+    const getSearches = () => {
+        console.log('in searching');
+        dispatch({
+            type: 'FETCH_SEARCHES'
+        })
+    }
+
+
+     //---------------------------------------------------------------------
 
     return (
         <form onSubmit={addNewGif}>
@@ -35,6 +54,7 @@ function SearchView() {
             value={newGif.name}
             onChange={handleNameChange} />
             <button type="submit">Submit</button>
+
         </form>
     );
 }

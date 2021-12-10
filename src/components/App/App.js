@@ -24,7 +24,9 @@ function App(props) {
           </li>
         </ul>
         <Route exact path="/" element={SearchView}/>
+          <SearchView />
         <Route exact path="/favorites" element={FavoritesView}/>
+          <FavoritesView />
       
       </Router>
     </div>
