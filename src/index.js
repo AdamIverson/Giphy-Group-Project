@@ -41,16 +41,16 @@ function* fetchFavorites(action) {
 
 
 const categoryReducer = (state = [], action) => {
-    switch(action.type){
+    switch (action.type) {
         case 'SET_CATEGORY':
             return action.payload;
-            default:
-                return state;
+        default:
+            return state;
     }
 }
 
-function* getCategory(){
-    try{
+function* getCategory() {
+    try {
         const response = yield axios({
             method: 'GET',
             url: '/api/category'
@@ -59,28 +59,26 @@ function* getCategory(){
             type: 'SET_CATEGORY',
             payload: response.data
         })
-    }catch(error){
+    } catch (error) {
         console.log(error);
-        
+
     }
 }
-//=========================================================================
+
+
 const searchReducer = (state = [], action) => {
-    switch(action.type){
+    switch (action.type) {
         case 'FETCH_SEARCH':
             return action.payload;
-            default:
-                return state;
+        default:
+            return state;
     }
-    
+
 }
 
-
-
-//--------------------------------------
-function* getSearch(action){
+function* getSearch(action) {
     //console.log('in getSearchhhh!');  
-    try{
+    try {
         const response = yield axios({
             method: 'GET',
             url: `/api/search?q=${action.payload}`
@@ -95,22 +93,21 @@ function* getSearch(action){
     }
 };
 
-//=========================================================================
-
 function* addFavorite(action) {
     try {
-      const response = yield axios({
-        method: "POST",
-        url: "/api/plant",
-        data: { plant: action.payload },
-      });
-      yield put({
-        type: "FETCH_FAVORITES",
-      });
+        console.log('in addFavorite', action);
+        const response = yield axios({
+            method: "POST",
+            url: "/api/favorite",
+            data: action.payload,
+        });
+        yield put({
+            type: "FETCH_FAVORITES",
+        });
     } catch (err) {
-      console.log(err);
+        console.log(err);
     }
-  }
+}
 
 
 // create Saga watcher function
