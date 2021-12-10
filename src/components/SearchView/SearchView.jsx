@@ -4,9 +4,7 @@ import { useHistory } from 'react-router';
 import { useState } from 'react';
 
 
-
 function SearchView() {
-    //Initial state is an OBJECT, with keys id and name
     let [newGif, setGif] = useState('');
 
     // Declare dispatch and history
