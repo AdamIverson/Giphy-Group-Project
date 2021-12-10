@@ -45,7 +45,12 @@ function SearchView() {
         })
     }
 
-
+    const addFavorite = () => {
+        console.log('in addFavorite');
+        dispatch({
+            type: 'ADD_FAVORITE'
+        })
+    }
      //---------------------------------------------------------------------
 
     return (
@@ -54,9 +59,11 @@ function SearchView() {
             value={newGif.name}
             onChange={handleNameChange} />
             <button type="submit">Submit</button>
-
         </form>
     );
 }
+
+//For Favoriting the GIF once map of GIFs is made
+//             <button type="submit" onClick={addFavorite}>Favorite</button>
 
 export default SearchView;
