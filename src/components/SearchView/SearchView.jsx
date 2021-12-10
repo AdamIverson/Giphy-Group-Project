@@ -17,33 +17,33 @@ function SearchView() {
     const handleNameChange = (event) => {
         console.log('event happened');
         //Similar to in redux -- we dont want to get rid of the id field when we update name
-        setGif({...newGif, name: event.target.value})
+        setGif(...newGif, event.target.value);
     }
 
     // Submits new gif object
     const addNewGif = event => {
         event.preventDefault();
         dispatch({ 
-            type: 'GET_RESULTS',
+            type: 'FETCH_SEARCHES',
             payload: newGif 
         });
         //updates the next Gif
         setGif('');
     }
     //---------------------------------------------------------------------
-    useEffect(() => {
-        getSearches();
-    }, []);
+    // useEffect(() => {
+    //     getSearches();
+    // }, []);
     
-    const searchReducer = useSelector(store => store.searchReducer)
+    // const searchReducer = useSelector(store => store.searchReducer)
 
 
-    const getSearches = () => {
-        console.log('in searching');
-        dispatch({
-            type: 'FETCH_SEARCHES'
-        })
-    }
+    // const getSearches = () => {
+    //     console.log('in searching');
+    //     dispatch({
+    //         type: 'FETCH_SEARCHES'
+    //     })
+    // }
 
 
      //---------------------------------------------------------------------
@@ -54,7 +54,6 @@ function SearchView() {
             value={newGif.name}
             onChange={handleNameChange} />
             <button type="submit">Submit</button>
-
         </form>
     );
 }
