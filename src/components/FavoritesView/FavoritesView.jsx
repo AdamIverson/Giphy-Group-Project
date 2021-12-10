@@ -23,16 +23,35 @@ function FavoritesView() {
         })
     };
 
+    // create function to display category based on category_id
+    const displayCategoryName = (favoriteItem) => {
+        if (favoriteItem.category_id === 1) {
+            return 'Funny';
+        } else if (favoriteItem.category_id === 2) {
+            return 'Cohort';
+        } else if (favoriteItem.category_id === 3) {
+            return 'Cartoon';
+        } else if (favoriteItem.category_id === 4) {
+            return 'Nsfw';
+        } else if (favoriteItem.category_id === 5) {
+            return 'Meme';
+        } else {
+            return 'No category';
+        }
+    }
+
     return (
         <div>
-            <p>{favoritesReducer}</p>
-            {/* <ul>
+            <h1>Checkout your favorites!</h1>
+            <ul>
                 {favoritesReducer.map(favoriteItem => (
-                    <li key={favoriteItem.id}>
+                    <div key={favoriteItem.id}>
                         {favoriteItem.name}
-                    </li>
+                        <br></br>
+                        <p>Category: {displayCategoryName(favoriteItem)}</p>
+                    </div>
                 ))}
-            </ul> */}
+            </ul>
         </div>
     )
 } // end FavoritesView
